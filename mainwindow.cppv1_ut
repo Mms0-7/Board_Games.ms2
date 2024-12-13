@@ -1,75 +1,12 @@
-/*
- * #include "mainwindow.h"
-#include "ui_mainwindow.h"
-#include "cell.h"
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::MainWindow) {
-    ui->setupUi(this);
-
-    // إعداد الشبكة لكل Graphics View
-    for (int i = 1; i <= 9; ++i) {
-        QGraphicsView *view = findChild<QGraphicsView *>(QString("graphicsView_%1").arg(i));
-        if (view) {
-            setupGraphicsView(view);
-        }
-    }
-}
-
-MainWindow::~MainWindow() {
-    delete ui;
-}
-
-void MainWindow::setupGraphicsView(QGraphicsView *view) {
-    QGraphicsScene *scene = new QGraphicsScene(this);
-    view->setScene(scene);
-
-    const int cellSize = 50; // حجم كل خلية
-    const int gridSize = 3;  // شبكة 3×3
-
-    // إنشاء الخلايا داخل الشبكة
-    for (int i = 0; i < gridSize; ++i) {
-        for (int j = 0; j < gridSize; ++j) {
-            auto cell = new Cell(j * cellSize, i * cellSize, cellSize, cellSize);
-            scene->addItem(cell);
-        }
-    }
-
-    view->setRenderHint(QPainter::Antialiasing);
-    view->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
-}
-//===========================================================================
-
-void MainWindow::setupGraphicsView(QGraphicsView *view) {
-    // إعداد مشهد جديد
-    QGraphicsScene *scene = new QGraphicsScene(this);
-    view->setScene(scene);
-
-    // أبعاد الشبكة
-    const int cellSize = 50; // حجم كل خلية
-    const int gridSize = 3;  // عدد الخلايا في الصف/العمود
-    const int totalSize = cellSize * gridSize;
-
-    // رسم الخطوط الأفقية
-    for (int i = 0; i <= gridSize; ++i) {
-        scene->addLine(0, i * cellSize, totalSize, i * cellSize, QPen(Qt::black));
-    }
-
-    // رسم الخطوط العمودية
-    for (int i = 0; i <= gridSize; ++i) {
-        scene->addLine(i * cellSize, 0, i * cellSize, totalSize, QPen(Qt::black));
-    }
-}
-*/
-//===============================================
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "cell.h"
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::MainWindow), isXTurn(true) { // قيمة أولية لـ isXTurn
+    : QMainWindow(parent), ui(new Ui::MainWindow), isXTurn(true) { 
     ui->setupUi(this);
 
-    // إعداد الشبكة لكل Graphics View
+   
     for (int i = 1; i <= 9; ++i) {
         QGraphicsView *view = findChild<QGraphicsView *>(QString("graphicsView_%1").arg(i));
         if (view) {
@@ -85,18 +22,18 @@ void MainWindow::setupGraphicsView(QGraphicsView *view) {
     QGraphicsScene *scene = new QGraphicsScene(this);
     view->setScene(scene);
 
-    const int cellSize = 150; // حجم الخلية (يمكنك تغييره حسب الحاجة)
-    const int gridSize = 3;   // شبكة 3×3
+    const int cellSize = 150; // 
+    const int gridSize = 3;   //
 
-    // إنشاء الخلايا داخل الشبكة
+   
     for (int i = 0; i < gridSize; ++i) {
         for (int j = 0; j < gridSize; ++j) {
-            auto cell = new Cell(j * cellSize-190, i * cellSize-190, cellSize, cellSize);  // تصحيح الإحداثيات
+            auto cell = new Cell(j * cellSize-190, i * cellSize-190, cellSize, cellSize);  // 
             scene->addItem(cell);
         }
     }
 
-    // تعديل أبعاد المشهد ليشمل الحجم الكامل للشبكة
+  
     scene->setSceneRect(0, 0, 70, 70);
 
     view->setRenderHint(QPainter::Antialiasing);
